@@ -4,7 +4,9 @@ import React, { useState } from "react";
 import CardsInfo from "./CardsInfo";
 
 const Form = () => {
-	const usersInfo = [];
+	const [usersInfo, setUsersInfo] = useState([
+		{ nome: "Ze", peso: 60, altura: 1.8, imc: 18 },
+	]);
 	function calcularIMC() {
 		setImc(Math.floor(peso / Math.pow(altura, 2)));
 
@@ -12,7 +14,7 @@ const Form = () => {
 		console.log(usersInfo);
 		const returnObj = { nome, peso, altura, imc };
 		const copy = { ...returnObj };
-		usersInfo.push(copy);
+		setUsersInfo([...usersInfo, copy]);
 	}
 
 	const [nome, setNome] = useState();
@@ -32,7 +34,7 @@ const Form = () => {
 
 	return (
 		<div class="form-main">
-			<form class="col-xs-4">
+			<form class="col-xs-6" style={{ margin: "50px 33vw" }}>
 				<label class="label label-primary" for="nome">
 					Nome
 				</label>
@@ -42,7 +44,7 @@ const Form = () => {
 					id="nome"
 					placeholder="Nome"
 					onChange={nomeChangeHandler}
-					style={{ margin: "15px 0" }}
+					style={{ margin: "15px 0", width: "50vw" }}
 				/>
 				<label class="label label-primary" for="altura">
 					Altura
@@ -53,7 +55,7 @@ const Form = () => {
 					id="altura"
 					placeholder="Altura"
 					onChange={alturaChangeHandler}
-					style={{ margin: "15px 0" }}
+					style={{ margin: "15px 0", width: "50vw" }}
 				/>
 				<label class="label label-primary" for="peso">
 					Peso
@@ -64,46 +66,40 @@ const Form = () => {
 					id="peso"
 					placeholder="Peso"
 					onChange={pesoChangeHandler}
-					style={{ margin: "15px 0" }}
+					style={{ margin: "15px 0", width: "50vw" }}
 				/>
 				<input
 					type="button"
 					value="Calcular"
 					class="btn btn-primary"
+					style={{ position: "center" }}
 					onClick={calcularIMC}
 				/>
 			</form>
 
-			<div
-				class="panel panel-default"
-				style={{ width: "300px", height: "150px" }}
-			>
-				<div class="panel-heading">
-					<h3 class="panel-title">{nome}</h3>
-				</div>
-				<div class="panel-body ">
-					<p>Peso: {peso}</p> <p>Altura: {altura}</p>{" "}
-					<p>IMC: {imc}</p>{" "}
-				</div>
-			</div>
-
+			{/* <div
+				style={{
+					display: "flex",
+					flexWrap: "wrap",
+					width: "50vw",
+					alignItems: "center",
+					height: "100vh",
+				}}
+			> */}
 			{usersInfo.map((user) => {
 				return (
-					<div
-						class="panel panel-default"
-						style={{ width: "300px", height: "150px" }}
-					>
-						<div class="panel-heading">
-							<h3 class="panel-title">{user.nome}</h3>
-						</div>
-						<div class="panel-body ">
-							<p>Peso: {user.peso}</p>{" "}
-							<p>Altura: {user.altura}</p> <p>IMC: {user.imc}</p>{" "}
-						</div>
-					</div>
+					<CardsInfo
+						info={{
+							nome: user.nome,
+							peso: user.peso,
+							altura: user.altura,
+							imc: user.imc,
+						}}
+					/>
 				);
 			})}
 		</div>
+		// </div>
 	);
 };
 

@@ -1,14 +1,9 @@
-.block {
-	display: block;
-}
-
 .form-main {
 	display: flex;
-	justify-content: space-around;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	height: 100%;
-	margin: 50px auto 0 auto;
-}
-
-.lbl-margin {
-	margin: 15px;
+	margin: 0 auto;
 }

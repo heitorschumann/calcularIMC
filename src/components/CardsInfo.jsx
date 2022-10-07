@@ -1,10 +1,11 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./CardsInfo.css";
 import React from "react";
 
 const CardsInfo = (props) => {
 	return (
 		<div
-			class="panel panel-default"
+			class="panel panel-default card"
 			style={{ width: "300px", height: "150px" }}
 		>
 			<div class="panel-heading">
