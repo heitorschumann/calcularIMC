@@ -72,20 +72,10 @@ const Form = () => {
 					type="button"
 					value="Calcular"
 					class="btn btn-primary"
-					style={{ position: "center" }}
 					onClick={calcularIMC}
 				/>
 			</form>
 
-			{/* <div
-				style={{
-					display: "flex",
-					flexWrap: "wrap",
-					width: "50vw",
-					alignItems: "center",
-					height: "100vh",
-				}}
-			> */}
 			{usersInfo.map((user) => {
 				return (
 					<CardsInfo
@@ -99,7 +89,6 @@ const Form = () => {
 				);
 			})}
 		</div>
-		// </div>
 	);
 };
 
