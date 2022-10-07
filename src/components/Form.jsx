@@ -1,12 +1,18 @@
 import "bootstrap/dist/css/bootstrap.css";
+import "./form.css";
 import React, { useState } from "react";
+import CardsInfo from "./CardsInfo";
 
 const Form = () => {
+	const usersInfo = [];
 	function calcularIMC() {
 		setImc(Math.floor(peso / Math.pow(altura, 2)));
 
 		console.log(nome, peso, altura, imc);
-		return Math.floor(imc);
+		console.log(usersInfo);
+		const returnObj = { nome, peso, altura, imc };
+		const copy = { ...returnObj };
+		usersInfo.push(copy);
 	}
 
 	const [nome, setNome] = useState();
@@ -25,8 +31,8 @@ const Form = () => {
 	}
 
 	return (
-		<div>
-			<form class="col-xs-6 block">
+		<div class="form-main">
+			<form class="col-xs-4">
 				<label class="label label-primary" for="nome">
 					Nome
 				</label>
@@ -35,8 +41,8 @@ const Form = () => {
 					class="form-control"
 					id="nome"
 					placeholder="Nome"
-					value={nome}
 					onChange={nomeChangeHandler}
+					style={{ margin: "15px 0" }}
 				/>
 				<label class="label label-primary" for="altura">
 					Altura
@@ -46,8 +52,8 @@ const Form = () => {
 					class="form-control"
 					id="altura"
 					placeholder="Altura"
-					value={altura}
 					onChange={alturaChangeHandler}
+					style={{ margin: "15px 0" }}
 				/>
 				<label class="label label-primary" for="peso">
 					Peso
@@ -57,8 +63,8 @@ const Form = () => {
 					class="form-control"
 					id="peso"
 					placeholder="Peso"
-					value={peso}
 					onChange={pesoChangeHandler}
+					style={{ margin: "15px 0" }}
 				/>
 				<input
 					type="button"
@@ -68,8 +74,11 @@ const Form = () => {
 				/>
 			</form>
 
-			<div class="panel panel-default col-xs-2">
-				<div class="panel-heading ">
+			<div
+				class="panel panel-default"
+				style={{ width: "300px", height: "150px" }}
+			>
+				<div class="panel-heading">
 					<h3 class="panel-title">{nome}</h3>
 				</div>
 				<div class="panel-body ">
@@ -77,6 +86,23 @@ const Form = () => {
 					<p>IMC: {imc}</p>{" "}
 				</div>
 			</div>
+
+			{usersInfo.map((user) => {
+				return (
+					<div
+						class="panel panel-default"
+						style={{ width: "300px", height: "150px" }}
+					>
+						<div class="panel-heading">
+							<h3 class="panel-title">{user.nome}</h3>
+						</div>
+						<div class="panel-body ">
+							<p>Peso: {user.peso}</p>{" "}
+							<p>Altura: {user.altura}</p> <p>IMC: {user.imc}</p>{" "}
+						</div>
+					</div>
+				);
+			})}
 		</div>
 	);
 };
